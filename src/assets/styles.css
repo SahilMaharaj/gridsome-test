@@ -1,0 +1,17 @@
+.logo-header {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 32px;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .nav a {
+    font-family: 'Permanent Marker', cursive;
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+  }
+
+  .nav a:hover {
+    border-bottom: 1px #000 solid;
+  }
