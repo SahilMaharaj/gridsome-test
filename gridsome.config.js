@@ -14,7 +14,11 @@ module.exports = {
         path: 'music/**/*.md',
         typeName: 'Post',
         remark: {
-          // remark options
+          plugins: [
+            ['@noxify/gridsome-plugin-remark-embed', {
+              'enabledProviders' : ['Youtube', 'Twitter', 'Soundcloud'],
+            }]
+          ]
         }
       }
     }

@@ -1,36 +1,33 @@
 <template>
   <Layout>
         
-    <h1>Hello, world!</h1>
+    
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores.</p>
-
-    <h2>Manual</h2>
-
-    <ul>
-      <li><g-link to="/music/count-on-me/">Count On Me</g-link></li>
-      <li><g-link to="/music/count-on-me/">Count On Me</g-link></li>
-      <li><g-link to="/music/count-on-me/">Count On Me</g-link></li>
-    </ul>
 
     <h2>Dynamic</h2>
-    <ul>
-      <li v-for="post in $page.posts.edges" :key="post.id">
-        <g-link :to="post.node.path">{{ post.node.title }}</g-link>
-      </li>
-    </ul>
+    <div class="track-grid">
+      <div class="track-wrapper" v-for="post in $page.posts.edges" :key="post.id">
+        <g-link :to="post.node.path"><g-image class="track-cover" :src="post.node.image" /></g-link>
+          <div class="track-info">
+            <g-link :to="post.node.path">{{ post.node.title }}</g-link>
+            <div class="track-excerpt">{{ post.node.excerpt | truncate(105) }}</div>
+          </div>
+      </div>
+    </div>
 
   </Layout>
 </template>
 
 <page-query>
 query Posts {
-  posts: allPost (sortBy: "title" order: ASC) {
+  posts: allPost (sortBy: "date" order: DESC limit: 6) {
     edges {
       node {
         id
         title
+        image
         path
+        excerpt
     	}
     }
   }
@@ -59,7 +56,62 @@ export default {
 </script>
 
 <style>
-.home-links a {
-  margin-right: 1rem;
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.track-cover {
+  width: 100%;
+  transition: all .5s;
+  transform-origin: 50% 50%;
+}
+
+.track-cover:hover {
+  opacity: .8;
+  transform: scale(0.9);
+}
+
+.track-wrapper:last-child {
+  margin-right: 0;
+}
+
+.track-wrapper a {
+  display: block;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.track-info {
+  padding: 10px 10px;
+}
+
+.track-excerpt {
+  margin-top: 10px;
+  font-size: .9em;
+  text-align: center;
+}
+
+
+
+
+
+/*-----MEDIA QUERIES----*/
+@media only screen and (max-width: 750px) {
+  .track-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 30px;
+  }
+
+  .track-excerpt {
+    text-align: center;
+  }
+  
 }
 </style>

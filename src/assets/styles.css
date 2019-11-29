@@ -1,17 +1,12 @@
-.logo-header {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 32px;
-    color: #000;
-    text-decoration: none;
-  }
-
-  .nav a {
-    font-family: 'Permanent Marker', cursive;
-    text-decoration: none;
-    color: #000;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Alata', sans-serif;
     font-size: 18px;
-  }
+    line-height: 1.5;
+}
 
-  .nav a:hover {
-    border-bottom: 1px #000 solid;
-  }
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+ 
