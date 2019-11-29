@@ -27,5 +27,8 @@ module.exports = {
     remark: {
       // global remark options
     }
+  },
+  prefetch: {
+    mask: '^$', // example - disable all prefetch 
   }
 }
